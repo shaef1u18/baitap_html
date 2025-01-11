@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>Tiêu đề trang</title>
+        <style>
+           tbody tr:nth-child(even){
+                background-color:yellow;
+           }
+           tbody tr:nth-child(odd){
+                background-color: pink;
+           }
+           /*di chuyển vào dòng nào trong tbody thì nền cyan đổi chuột thành hình ngón tay*/
+           tbody tr:hover{
+                background-color:cyan;
+                cursor: pointer;
+           }
+        </style>
+    </head>
+    <body>
+        <table border="1">
+            <caption>danh sách sản phẩm của ai đó</caption>
+            <thead>
+                <tr>
+                    <th>mã sản phẩm</th>
+                    <th>tên sản phẩm</th>
+                    <th>giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>sp1</td>
+                    <td>thuốc lá</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>sp2</td>
+                    <td>cần</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>sp3</td>
+                    <td>thuốc lào</td>
+                    <td>70</td>
+                </tr>
+                <tr>
+                    <td>sp4</td>
+                    <td>pod</td>
+                    <td>80</td>
+                </tr>
+                <tr>
+                    <td>sp5</td>
+                    <td>bóng cười</td>
+                    <td>100</td>
+                </tr>
+            <t/body>
+            <tfoot>
+                <tr>
+                    <td colspan="3">design by shaef1u</td>
+                </tr>
+            </tfoot>
+        </table>
+    </body>
+</html>

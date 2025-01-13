@@ -1,0 +1,107 @@
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+    
+    .container {
+        max-width: 960px;
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    header {
+        background-image: url('hinh/scrapbooks.png');
+        background-repeat: no-repeat;
+        background-position: right;
+        padding: 20px 0;
+        background-size: 300px;
+        text-align: center;
+    }
+    hr {
+        border-top: 1px solid #ffd700; /* Màu vàng */
+    }
+    .logo h1 {
+        margin: 0;
+        font-size: 2em;
+        color: #333; /* Màu chữ logo */
+    }
+    
+    .content-wrapper {
+        display: flex;
+    }
+    
+    nav {
+        background-image: url(hinh/back.jpg);
+        padding: 15px;
+        flex: 0 0 25%;
+        position: fixed; 
+        top: 70px;
+        left: 0; /* Thay đổi vị trí thành 'left' */
+        height: 100vh; 
+        overflow-y: auto; 
+    }
+    p {
+        font-family: Times New Roman;
+        color: #8B0000; /* Màu đỏ đô */
+    }
+    nav ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    nav ul li {
+        margin-bottom: 10px;
+    }
+    
+    nav ul li a {
+        text-decoration: none;
+        color: #8B0000; /* Màu chữ đỏ đô */ 
+    }
+    
+    main {
+        flex: 1;
+        padding: 15px;
+        background-color: #fff;
+        margin-left: 25%; /* Tạo khoảng cách cho sidebar */ 
+    }
+    
+    main h2 {
+        color: #ffd700;
+    }
+    
+    main h3 {
+        color: #555;
+    }
+    
+    .basic-materials {
+        background-color: #fffacd;
+        padding: 10px;
+        border: 4px solid #c6a46d;
+        border-radius: 0;
+        margin-top: 20px;
+        width:35%;
+        float:right;
+        border-radius: 5px; /* Tạo khung vuông */
+    }
+    
+    .basic-materials ul {
+        list-style: square;
+        padding-left: 20px;
+        color:#8B0000;
+    }
+    
+    footer {
+        padding: 10px 0;
+        margin-top: 20px;
+        text-align: center;
+        color: #ffd700;
+    }
+
+    .footer-container {
+        text-align: center;
+        margin: 0 auto;
+        width: 80%; /* Điều chỉnh chiều rộng nếu cần */
+        background-color: #f0f0f0;
+    }

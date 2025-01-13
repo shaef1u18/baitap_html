@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sidebar</title>
+    <style>
+        /* Reset any default styles that might affect text color */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('hinh/Wall2.jpg');
+            filter: contrast(140%) brightness(100%); 
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black for the sidebar background */
+            filter: contrast(200%); 
+            font-family: Times New Roman;
+            padding: 10px;
+            color: white; /* Make sure text color is white globally */
+        }
+
+        .sidebar {
+            padding: 10px;
+        }
+
+        .sidebar a {
+            color: blue !important; /* Force blue color for links */
+            text-decoration: underline;
+            display: block;
+            margin: 5px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .sidebar a:hover {
+            color: purple !important; /* Change to lightblue on hover */
+            text-decoration: underline;
+        }
+
+        .submenu {
+            padding-left: 20px; /* Indentation for submenu items */
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="TCE.html" target="main">Home Page</a>
+        <a href="Philosph.html" target="main">Our Philosophy</a>
+        <a href="Lessons.html" target="main">Climbing Lessons</a>
+        <a target="main">Tours</a>
+        <div class="submenu">
+            <a href="Grepon.html" target="main">Petit Grepon</a>
+            <a href="Lumpy.html" target="main">Lumpy Ridge</a>
+            <a href="NFace.html" target="main">North Face</a>
+            <a href="Kieners.html" target="main">Kiener's</a>
+            <a href="Diamond.html" target="main">The Diamond</a>
+            <a href="Eldorado.html" target="main">Eldorado</a>
+        </div>
+
+        <a target="main">Staff</a>
+    </div>
+</body>
+</html>

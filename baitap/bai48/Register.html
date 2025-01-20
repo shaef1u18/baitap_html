@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jackson Electronics Registration Form</title>
+    <style>
+        /* .container {
+            width: 50%;
+            margin: auto;
+            background-color: lightblue;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-spacing: 10px;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 10px;
+            vertical-align: top;
+            white-space: nowrap;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .register-btn {
+            background-color: white;
+            color: black;
+        }
+        .cancel-btn {
+            background-color: white;
+            color: black;
+        }
+        button:hover {
+            opacity: 0.8;
+        } */
+    body {
+        background-color: lightblue;
+        margin: 0;
+        padding: 0;
+        height: 100vh; /* Full height of the viewport */
+    }
+    .underline {
+            border-bottom: 1px solid #ccc;
+        }
+
+    .container {
+        width: 50%;
+        background-color: lightblue;
+        margin: auto;
+        border-radius: 8px; /* Set the container background to white */
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-spacing: 0px;
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 10px;
+        vertical-align: top;
+        white-space: nowrap;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .buttons {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .register-btn {
+        background-color: white;
+        color: black;
+    }
+
+    .cancel-btn {
+        background-color: white;
+        color: black;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+    </style>
+    <script>
+        function registerAlert() {
+            alert("Đăng ký thành công!");
+        }
+
+        function clearForm() {
+            document.getElementById("registrationForm").reset();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="hinh/Jackson.gif" alt="Jackson Electronics Logo">
+            <h2>Registration Form</h2>
+            <p>Register your Jackson Electronics product here.</p>
+        </div>
+        <form id="registrationForm">
+            <table>
+                <tr>
+                    <td>First Name:</td>
+                    <td><input type="text" id="first-name" name="first-name" required></td>
+                    <td>Last Name:</td>
+                    <td><input type="text" id="last-name" name="last-name" required></td>
+                </tr>
+                <tr>
+                    <td>Address #1:</td>
+                    <td colspan="3"><input type="text" id="address1" name="address1"></td>
+                </tr>
+                <tr>
+                    <td>Address #2:</td>
+                    <td colspan="3"><input type="text" id="address2" name="address2"></td>
+                </tr>
+                <tr>
+                    <td>City:</td>
+                    <td><input type="text" name="city"></td>
+                    <td>State:</td>
+                    <td><input type="text" name="state"></td>
+                    <td>Zip:</td>
+                    <td><input type="text" name="zip"></td>
+                </tr>          
+                <tr>
+                    <td>Country:</td>
+                    <td colspan="3"><input type="text" name="country" value="United States"></td>
+                    <hr>
+                </tr>
+                <tr>
+                    <td>Product:</td>
+                    <td>
+                        <select id="product" name="product">
+                            <option value="ScanMaster">ScanMaster</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date Purchased:</td>
+                    <td><input type="date" id="date-purchased" name="date-purchased"></td>
+                </tr>
+                <tr>
+                    <td>Serial #:</td>
+                    <td colspan="3"><input type="text" id="serial" name="serial"></td>
+                </tr>
+                <tr>
+                    <td>Used for:</td>
+                    <td colspan="3">
+                        <table>
+                            <tr>
+                                <td>
+                                    <label><input type="radio" name="used-for" value="Home">Home</label><br/>
+                                    <label><input type="radio" name="used-for" value="Business">Business</label> <br/>
+                                    <label><input type="radio" name="used-for" value="Government">Government</label>
+                                </td>
+                                <td>
+                                    <label><input type="radio" name="used-for" value="Educational">Educational Institution</label> <br/>
+                                    <label><input type="radio" name="used-for" value="Other">Other</label>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>System (check all that apply):</td>
+                    <td colspan="3">
+                        <table>
+                            <tr>
+                                <td>
+                                    <label><input type="checkbox" name="system" value="Windows">Windows</label><br>
+                                    <label><input type="checkbox" name="system" value="Macintosh">Macintosh</label>
+                                </td>
+                                <td>
+                                    <label><input type="checkbox" name="system" value="UNIX">UNIX</label><br>
+                                    <label><input type="checkbox" name="system" value="Other"> Other</label>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Comments:</td>
+                    <td colspan="3"><textarea id="comments" name="comments" rows="4"></textarea></td>
+                </tr>
+            </table>
+            <div class="buttons">
+                <button type="button" class="register-btn" onclick="registerAlert()">Click to Register</button>
+                <button type="button" class="cancel-btn" onclick="clearForm()">Click to Cancel</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

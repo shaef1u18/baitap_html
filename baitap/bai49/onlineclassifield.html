@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Classifieds Search Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+        }
+        .container {
+            width: 600px;
+            margin: 50px auto;
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+            color: red;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 3px;
+        }
+        .section input[type="date"] {
+            padding: 5px;
+            margin-right: 10px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: left;
+        }
+        .buttons button {
+            padding: 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .buttons button img {
+            width: 50px; /* Adjust size of the GIFs as needed */
+            height: 50px;
+        }
+
+        /* Grouping input elements for display */
+        .grouped {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; /* Đảm bảo các phần tử được phân bố đều */
+        }
+        .grouped label {
+            flex: 1 1 30%; /* Đặt độ rộng của mỗi phần tử là 30% và cho phép chúng thay đổi kích thước */
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        /* Align the specific groups into columns */
+        .column-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .date-range {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Khoảng cách giữa các phần tử */
+        }
+
+    </style>
+    <script>
+        function handleSearch() {
+    let keywords = document.querySelector('input[name="keywords"]').value;
+    if (keywords) {
+        let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(keywords)}`;
+        window.open(searchUrl, '_blank');
+    } else {
+        alert("Please enter keywords before searching!");
+    }
+}
+
+        function handleHelp() {
+            window.open('https://support.google.com/', '_blank');
+        }
+        function handleCancel() {
+            // Xóa trắng tất cả dữ liệu trong form
+            document.querySelector('form').reset();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Online Classifieds Search Form</h1>
+        <form>
+            <div class="section" align="left">
+                <label><strong>1) Search for a classified in the following sections:</strong></label>
+                <div class="grouped">
+                    <label><input type="radio" name="section" value="employment"> Employment</label>
+                    <label><input type="radio" name="section" value="personal"> Personal</label>
+                </div>
+                <div class="grouped">
+                    <label><input type="radio" name="section" value="for-sale"> For Sale</label>
+                    <label><input type="radio" name="section" value="miscellaneous"> Miscellaneous</label>
+                </div>
+                <div class="grouped">
+                    <label><input type="radio" name="section" value="housing"> Housing</label>
+                    <label><input type="radio" name="section" value="all" checked> All of the above</label>
+                </div>
+            </div>
+            <div class="section">
+                <label><strong>2) Search the following publications:</strong></label>
+                <div class="grouped">
+                    <label><input type="checkbox" name="publication" value="midwest-times" checked> Midwest Times</label>
+                    <label><input type="checkbox" name="publication" value="modern-news"> Modern News</label>
+                    <label><input type="checkbox" name="publication" value="employment-today"> Employment Today</label>
+                </div>
+                <div class="grouped">
+                    <label><input type="checkbox" name="publication" value="great-lakes-classifieds" checked> Great Lakes Classifieds</label>
+                    <label><input type="checkbox" name="publication" value="middleton-daily"> Middleton Daily</label>
+                    <label><input type="checkbox" name="publication" value="cashtown-daily-news"> Cashtown Daily News</label>
+                </div> 
+                <div class="section date-range">
+                    <label><strong>3) From to</strong></label>
+                    <input type="date" name="from-date">
+                    <label>to</label>
+                    <input type="date" name="to-date">
+                </div>
+                
+                <div class="section">
+                    <label><strong>4) Enter a few keywords to describe the classified:</strong></label>
+                    <input type="text" name="keywords">
+                </div>
+                <div class="section">
+                    <label><strong>5) Click on of the options below:</strong></label>
+                </div>
+                <div class="buttons">
+                    <button type="button" onclick="handleSearch()"><img src="search.gif" alt="Search"> </button>
+                    <button type="button" onclick="handleHelp()"><img src="help.gif" alt="Help"> </button>
+                    <button type="reset" onclick="handleCancel()"><img src="cancel.gif" alt="Cancel"> </button>
+                </div>
+        </form>
+    </div>
+</body>
+</html>

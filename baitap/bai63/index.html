@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng ký thành viên</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+    tr:hover {
+      background-color: yellow;
+    }
+    tr {
+      transition: background-color 0.3s;
+    }
+    .blue-bg {
+    background-color: blue;
+    color: white;
+    padding: 2px 4px;
+    }
+
+    .red-bg {
+    background-color: red;
+    color: white;
+    padding: 2px 4px;
+    }
+
+    .yellow-bg {
+    background-color: yellow;
+    color: black;
+    padding: 2px 4px;
+    }
+
+    .green-bg {
+    background-color: green;
+    color: white;
+    padding: 2px 4px;
+    }
+
+    .purple-bg {
+    background-color: purple;
+    color: white;
+    padding: 2px 4px;
+    }
+    /* Định dạng tiêu đề bảng */
+    #memberTable th {
+    background-color: blue; /* Nền xanh dương */
+    color: white; /* Chữ đen */
+    padding: 10px; /* Khoảng cách bên trong */
+    text-align: left; /* Canh giữa chữ */
+    }
+
+    /* Định dạng hàng trong bảng */
+    #memberTable td {
+    padding: 8px;
+    text-align: center; /* Canh giữa nội dung */
+    border: 1px solid black; /* Viền đen xung quanh ô */
+    }
+    hr {
+    border: none;
+    border-top: 1px solid black;
+    width: 100%;
+    margin: 30px auto;
+    }
+    label {
+    margin-right: 5px; /* Khoảng cách nhỏ giữa label và select */
+    }
+    select {
+    margin-right: 10px; /* Khoảng cách nhỏ giữa các select */
+    }
+
+
+  </style>
+</head>
+<body>
+  <h1>Đăng ký thành viên</h1>
+  <hr>
+  <form id="registerForm">
+    <label for="name">Tên(*)</label>
+    <input type="text" id="name" name="name"><br><br>
+
+    <label for="day">Ngày sinh(*)</label>
+    <label for="day">Ngày:</label>
+    <select id="day"></select>
+    <label for="month">Tháng:</label>
+    <select id="month"></select>
+    <label for="year">Năm:</label>
+    <select id="year"></select><br><br>
+
+    <label for="gender">Giới tính(*)</label>
+    <input type="radio" id="male" name="gender" value="Nam"> Nam
+    <input type="radio" id="female" name="gender" value="Nữ"> Nữ<br><br>
+
+    <label for="email">Email(*)</label>
+    <input type="email" id="email" name="email"><br><br>
+
+    <label>Sở thích của bạn:</label><br>
+    <input type="checkbox" id="shopping" value="Mua sắm"> Mua sắm<br>
+    <input type="checkbox" id="travel" value="Du lịch"> Du lịch<br>
+    <input type="checkbox" id="chatting" value="Tán gẫu"> Tán gẫu<br>
+    <input type="checkbox" id="reading" value="Đọc sách"> Đọc sách<br>
+    <input type="checkbox" id="music" value="Nghe nhạc"> Nghe nhạc<br><br>
+
+    <label for="color">Màu yêu thích của bạn:</label><br>
+    <label class="blue-bg">
+      <input type="radio" name="color" value="Màu xanh da trời"> Màu xanh da trời
+    </label><br>
+    <label class="red-bg">
+      <input type="radio" name="color" value="Màu đỏ"> Màu đỏ
+    </label><br>
+    <label class="yellow-bg">
+      <input type="radio" name="color" value="Màu vàng"> Màu vàng
+    </label><br>
+    <label class="green-bg">
+      <input type="radio" name="color" value="Màu xanh lá cây"> Màu xanh lá cây
+    </label><br>
+    <label class="purple-bg">
+      <input type="radio" name="color" value="Màu xanh tím"> Màu xanh tím
+    </label><br><br>
+
+    <button type="button" onclick="register()">Đăng ký</button>
+    <button type="button" onclick="resetForm()">Tiếp</button>
+  </form>
+
+  <h2>Danh sách thành viên</h2>
+  <table id="memberTable">
+    <tr>
+      <th>Tên</th>
+      <th>Email</th>
+      <th>Giới tính</th>
+      <th>Năm sinh</th>
+      <th>Sở thích</th>
+      <th>Màu yêu thích</th>
+    </tr>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>

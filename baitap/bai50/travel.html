@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Expense Report</title>
+  <style>
+    body {
+      font-family: "Times New Roman", Times, serif; /* Đổi font sang Times New Roman */
+      background-color: #d8faff;
+      margin: 20px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      text-align: left;
+    }
+    hr {
+      border: 1px solid #000;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #000;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+    input[type="text"], input[type="number"], input[type="date"], select, textarea {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    textarea {
+      height: 80px;
+    }
+    .form-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      flex: 0 0 180px;
+      margin-right: 10px;
+      white-space: nowrap;
+    }
+    .form-group .field-pair {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+    .form-group .field-pair label {
+      margin-left: 20px; /* Khoảng cách giữa hai nhãn */
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      width: 300px;
+    }
+    button[type="submit"] {
+      background-color: white;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+    button[type="reset"] {
+      background-color: white;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+    button {
+      margin-top: 10px;
+    }
+    p.note {
+      font-size: 14px;
+      text-align: left;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="DeLong.jpg" alt="DeLong Enterprises">
+  </div>
+  <h1>Travel Expense Report</h1>
+  <hr>
+  <form id="expenseForm" onsubmit="handleSubmit(event)">
+    <div class="form-group">
+      <label for="firstName">1) First Name:</label>
+      <div class="field-pair">
+        <input type="text" id="firstName" required>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="ssn">2) Social Security Number:</label>
+      <input type="text" id="ssn" required>
+    </div>
+    <div class="form-group">
+      <label for="department">3) Department:</label>
+      <select id="department">
+        <option value="Accounting">Accounting</option>
+        <option value="HR">HR</option>
+        <option value="IT">IT</option>
+        <option value="Marketing">Marketing</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>4) Describe the purpose of your trip:</label>
+    </div>
+    <textarea id="tripDescription"></textarea>
+    <p>5) Itemize your travel expenses:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="date"></td>
+          <td><input type="text"></td>
+          <td>
+            <select>
+              <option>Meal</option>
+              <option>Transport</option>
+              <option>Hotel</option>
+              <option>Other</option>
+            </select>
+          </td>
+          <td><input type="number" step="0.01"></td>
+        </tr>
+        <tr>
+          <td><input type="date"></td>
+          <td><input type="text"></td>
+          <td>
+            <select>
+              <option>Meal</option>
+              <option>Transport</option>
+              <option>Hotel</option>
+              <option>Other</option>
+            </select>
+          </td>
+          <td><input type="number" step="0.01"></td>
+        </tr>
+        <tr>
+          <td><input type="date"></td>
+          <td><input type="text"></td>
+          <td>
+            <select>
+              <option>Meal</option>
+              <option>Transport</option>
+              <option>Hotel</option>
+              <option>Other</option>
+            </select>
+          </td>
+          <td><input type="number" step="0.01"></td>
+        </tr>
+        <tr>
+            <td><input type="date"></td>
+            <td><input type="text"></td>
+            <td>
+              <select>
+                <option>Meal</option>
+                <option>Transport</option>
+                <option>Hotel</option>
+                <option>Other</option>
+              </select>
+            </td>
+            <td><input type="number" step="0.01"></td>
+          </tr>
+      </tbody>
+    </table>
+    <p>
+      6) Have you submitted your receipts? 
+      <label><input type="radio" name="receipts" value="Yes" required> Yes</label>
+      <label><input type="radio" name="receipts" value="No" required> No</label>
+    </p>
+    <button type="submit">Submit travel expenses</button>
+    <button type="reset" onclick="handleReset()">Reset</button>
+  </form>
+  <p class="note">Questions? Contact Debbie Larson in Accounting (ext. 2150).</p>
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      alert("Travel expenses submitted successfully!");
+    }
+
+    function handleReset() {
+      document.getElementById("expenseForm").reset(); // Xóa dữ liệu trong form
+      alert("Form has been reset!"); // Hiển thị thông báo
+    }
+  </script>
+</body>
+</html>

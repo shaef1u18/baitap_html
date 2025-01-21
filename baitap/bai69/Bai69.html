@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Employee</title>
+    <script>
+        function loadData() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "employees.xml", true);
+            xhr.send();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var xmlDoc = xhr.responseXML;
+
+                    // Lấy tất cả các employee
+                    var employees = xmlDoc.getElementsByTagName("employee");
+                    var titles = new Set(); // Dùng Set để loại bỏ trùng lặp các title
+
+                    // Lặp qua các employee để lấy title
+                    for (var i = 0; i < employees.length; i++) {
+                        var title = employees[i].getAttribute("title");
+                        titles.add(title);
+                    }
+
+                    // Thêm các title vào droplist
+                    var droplist = document.getElementById("titleDroplist");
+                    droplist.innerHTML = "<option value=''>-- Chọn Title --</option>";
+                    titles.forEach(function (title) {
+                        var option = document.createElement("option");
+                        option.value = title;
+                        option.textContent = title;
+                        droplist.appendChild(option);
+                    });
+                }
+            };
+        }
+
+        function filterEmployeesByTitle() {
+            var selectedTitle = document.getElementById("titleDroplist").value;
+            if (!selectedTitle) return;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "employees.xml", true);
+            xhr.send();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var xmlDoc = xhr.responseXML;
+
+                    // Lấy tất cả các employee
+                    var employees = xmlDoc.getElementsByTagName("employee");
+                    var table = document.getElementById("employeeTable");
+
+                    // Reset bảng
+                    table.innerHTML = `
+                        <tr>
+                            <th>Mã Employee</th>
+                            <th>Tên Employee</th>
+                            <th>Phone Employee</th>
+                        </tr>
+                    `;
+
+                    // Lọc employee theo title
+                    for (var i = 0; i < employees.length; i++) {
+                        var title = employees[i].getAttribute("title");
+                        if (title === selectedTitle) {
+                            var id = employees[i].getAttribute("id");
+                            var name = employees[i].getElementsByTagName("name")[0].textContent;
+                            var phone = employees[i].getElementsByTagName("phone")[0]?.textContent || "N/A";
+
+                            // Thêm hàng vào bảng
+                            var row = `
+                                <tr>
+                                    <td>${id}</td>
+                                    <td>${name}</td>
+                                    <td>${phone}</td>
+                                </tr>
+                            `;
+                            table.innerHTML += row;
+                        }
+                    }
+                }
+            };
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            color: darkblue;
+        }
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        select {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th {
+            background-color: darkblue;
+            color: white;
+            text-align: left;
+            padding: 10px;
+        }
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body onload="loadData()">
+    <h1>Danh sách Employee</h1>
+
+    <!-- Droplist để chọn Title -->
+    <label for="titleDroplist">Chọn Title:</label>
+    <select id="titleDroplist" onchange="filterEmployeesByTitle()"></select>
+
+    <!-- Bảng hiển thị Employee -->
+    <table id="employeeTable">
+        <tr>
+            <th>Mã Employee</th>
+            <th>Tên Employee</th>
+            <th>Phone Employee</th>
+        </tr>
+    </table>
+</body>
+</html>

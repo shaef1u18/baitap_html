@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin Sinh Viên</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: orange;
+            color: black;
+            text-align: center;
+        }
+
+        tr:hover {
+            background-color: blue;
+            color: white;
+        }
+
+        tr {
+            transition: background-color 0.3s, color 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">Chi tiết thông tin Sinh Viên</th>
+            </tr>
+        </thead>
+        <tbody id="studentInfo">
+        </tbody>
+    </table>
+
+    <script>
+        // Chuỗi XML
+        const xmlString = `
+        <sinhvien>
+            <mssv>K123456789</mssv>
+            <hoTen>Quách Thị Bán Bún Bò</hoTen>
+            <ngaySinh>7/7/1997</ngaySinh>
+            <gioiTinh>Nữ</gioiTinh>
+        </sinhvien>
+        `;
+
+        // Sử dụng DOMParser để phân tích chuỗi XML
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+        // Trích xuất dữ liệu từ XML
+        const mssv = xmlDoc.getElementsByTagName("mssv")[0].textContent;
+        const hoTen = xmlDoc.getElementsByTagName("hoTen")[0].textContent;
+        const ngaySinh = xmlDoc.getElementsByTagName("ngaySinh")[0].textContent;
+        const gioiTinh = xmlDoc.getElementsByTagName("gioiTinh")[0].textContent;
+
+        // Thêm dữ liệu vào bảng HTML
+        const studentInfoTable = document.getElementById("studentInfo");
+        const rows = [
+            ["Mã Sinh Viên", mssv],
+            ["Họ tên", hoTen],
+            ["Ngày Sinh", ngaySinh],
+            ["Giới Tính", gioiTinh]
+        ];
+
+        rows.forEach(row => {
+            const tr = document.createElement("tr");
+            row.forEach(cellText => {
+                const td = document.createElement("td");
+                td.textContent = cellText;
+                tr.appendChild(td);
+            });
+
+            // Thêm sự kiện di chuột
+            tr.addEventListener("mouseover", () => {
+                tr.style.backgroundColor = "blue";
+                tr.style.color = "white";
+            });
+
+            tr.addEventListener("mouseout", () => {
+                tr.style.backgroundColor = "white";
+                tr.style.color = "black";
+            });
+
+            studentInfoTable.appendChild(tr);
+        });
+    </script>
+</body>
+</html>

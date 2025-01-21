@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Sinh Viên</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 0.5px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: green;
+            color: white;
+            cursor: pointer;
+        }
+
+        tr:hover {
+            background-color: yellow;
+        }
+
+        tr {
+            transition: background-color 0.3s;
+        }
+
+        .header-title {
+            background-color: #ffd700;
+            font-weight: bold;
+            text-align: center;
+            color: black;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td class="header-title" colspan="4">Danh sách Sinh Viên</td>
+            </tr>
+            <tr>
+                <th onclick="sortTable(0)">Mã Sinh Viên</th>
+                <th onclick="sortTable(1)">Họ Tên</th>
+                <th onclick="sortTable(2)">Ngày Sinh</th>
+                <th onclick="sortTable(3)">Giới Tính</th>
+            </tr>
+        </thead>
+        <tbody id="tbodysinhvien">
+        </tbody>
+    </table>
+
+    <script>
+        var dataset = `<?xml version="1.0" encoding="UTF-8"?>
+        <sinhviens>
+            <sinhvien>
+                <mssv>K123456789</mssv>
+                <hoTen>Quách Thị Bán Bún Bò</hoTen>
+                <ngaySinh>7/7/1997</ngaySinh>
+                <gioiTinh>Nữ</gioiTinh>
+            </sinhvien>
+            <sinhvien>
+                <mssv>K12345000</mssv>
+                <hoTen>Hồng Lâu Mộng</hoTen>
+                <ngaySinh>2/2/1992</ngaySinh>
+                <gioiTinh>Nam</gioiTinh>
+            </sinhvien>
+            <sinhvien>
+                <mssv>K1674000</mssv>
+                <hoTen>Hồ Văn Đồ</hoTen>
+                <ngaySinh>2/7/1997</ngaySinh>
+                <gioiTinh>Nam</gioiTinh>
+            </sinhvien>
+        </sinhviens>`;
+
+        var sortOrder = true;
+
+        function tai_danhsach_sinhvien() {
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(dataset, "text/xml");
+            var sinhviens = xmlDoc.getElementsByTagName("sinhvien");
+            var tbody = document.getElementById("tbodysinhvien");
+
+            for (var i = 0; i < sinhviens.length; i++) {
+                var sinhvien = sinhviens[i];
+                var mssv = sinhvien.getElementsByTagName("mssv")[0].textContent;
+                var hoTen = sinhvien.getElementsByTagName("hoTen")[0].textContent;
+                var ngaySinh = sinhvien.getElementsByTagName("ngaySinh")[0].textContent;
+                var gioiTinh = sinhvien.getElementsByTagName("gioiTinh")[0].textContent;
+
+                var tr = document.createElement("tr");
+
+                [mssv, hoTen, ngaySinh, gioiTinh].forEach(text => {
+                    var td = document.createElement("td");
+                    td.textContent = text;
+                    tr.appendChild(td);
+                });
+
+                // Sự kiện click để mở trang chi tiết
+                tr.addEventListener("click", function() {
+                    // Lấy dữ liệu từ các ô trong dòng đã click
+                    var clickedMssv = this.cells[0].textContent;   // Mã sinh viên
+                    var clickedHoTen = this.cells[1].textContent;  // Họ tên
+                    var clickedNgaySinh = this.cells[2].textContent;  // Ngày sinh
+                    var clickedGioiTinh = this.cells[3].textContent; // Giới tính
+                    
+                    // Chuyển sang trang chi tiết với tham số URL
+                    window.location.href = `detail.html?mssv=${encodeURIComponent(clickedMssv)}&hoTen=${encodeURIComponent(clickedHoTen)}&ngaySinh=${encodeURIComponent(clickedNgaySinh)}&gioiTinh=${encodeURIComponent(clickedGioiTinh)}`;
+                });
+                tbody.appendChild(tr);
+            }
+        }
+
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("tbodysinhvien");
+            switching = true;
+
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+
+                for (i = 0; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("td")[n];
+                    y = rows[i + 1].getElementsByTagName("td")[n];
+
+                    if (n === 2) {
+                        var dateX = x.textContent.split("/").reverse().join("");
+                        var dateY = y.textContent.split("/").reverse().join("");
+
+                        if ((sortOrder && dateX > dateY) || (!sortOrder && dateX < dateY)) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else {
+                        if ((sortOrder && x.textContent.toLowerCase() > y.textContent.toLowerCase()) ||
+                            (!sortOrder && x.textContent.toLowerCase() < y.textContent.toLowerCase())) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+
+            sortOrder = !sortOrder;
+        }
+
+        tai_danhsach_sinhvien();
+    </script>
+</body>
+</html>

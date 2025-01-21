@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin Sinh Viên</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: orange;
+            color: black;
+            text-align: center;
+        }
+
+        tr:hover {
+            background-color: blue;
+            color: white;
+        }
+
+        tr {
+            transition: background-color 0.3s, color 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">Chi tiết thông tin Sinh Viên</th>
+            </tr>
+        </thead>
+        <tbody id="studentInfo"></tbody>
+    </table>
+
+    <script>
+        // Lấy tham số từ URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const mssv = urlParams.get("mssv");
+        const hoTen = urlParams.get("hoTen");
+        const ngaySinh = urlParams.get("ngaySinh");
+        const gioiTinh = urlParams.get("gioiTinh");
+
+        // In thông tin ra console để kiểm tra
+        console.log("Thông tin sinh viên: ", mssv, hoTen, ngaySinh, gioiTinh);
+
+        // Thêm thông tin vào bảng
+        const studentInfoTable = document.getElementById("studentInfo");
+        const rows = [
+            ["Mã Sinh Viên", mssv],
+            ["Họ tên", hoTen],
+            ["Ngày Sinh", ngaySinh],
+            ["Giới Tính", gioiTinh]
+        ];
+
+        rows.forEach(row => {
+            const tr = document.createElement("tr");
+            row.forEach(cellText => {
+                const td = document.createElement("td");
+                td.textContent = cellText;
+                tr.appendChild(td);
+            });
+
+            studentInfoTable.appendChild(tr);
+        });
+    </script>
+</body>
+</html>

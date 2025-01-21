@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CD Collection</title>
+    <script>
+        function loadCDCollection() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "cd_catalog.xml", true);
+            xhr.send();
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var xmlDoc = xhr.responseXML; // Parse XML response
+                    var cds = xmlDoc.getElementsByTagName("CD");
+                    var table = document.getElementById("CD");
+
+                    // Loop through each CD in the XML file
+                    for (var i = 0; i < cds.length; i++) {
+                        var artist = cds[i].getElementsByTagName("ARTIST")[0].textContent;
+                        var title = cds[i].getElementsByTagName("TITLE")[0].textContent;
+
+                        // Create a new row in the table
+                        var row = table.insertRow();
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+
+                        cell1.textContent = artist;
+                        cell2.textContent = title;
+                    }
+                }
+            };
+        }
+    </script>
+
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: darkblue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="loadCDCollection()">Get my CD collection</button>
+    <table id="CD">
+        <tr>
+            <th>Artist</th>
+            <th>Title</th>
+        </tr>
+    </table>
+</body>
+</html>
